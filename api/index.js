@@ -31,14 +31,14 @@ const writeGuestbookEntry = async (entry) => {
   }
 };
 
-app.get('/guestbook', async (req, res) => {
-  console.log('GET /guestbook hit');
+app.get('/api/guestbook', async (req, res) => {
+  console.log('GET /api/guestbook hit');
   const entries = await readGuestbook();
   res.json(entries);
 });
 
-app.post('/guestbook', async (req, res) => {
-  console.log('POST /guestbook hit');
+app.post('/api/guestbook', async (req, res) => {
+  console.log('POST /api/guestbook hit');
   console.log('Request body:', req.body);
   const newEntry = {
     name: req.body.name,
