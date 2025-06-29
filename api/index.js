@@ -43,7 +43,7 @@ app.post('/api/guestbook', async (req, res) => {
   const newEntry = {
     name: req.body.name,
     message: req.body.message,
-    date: new Date().toLocaleString(),
+    date: new Date().toLocaleString('en-US', { timeZone: req.body.timezone }),
   };
   await writeGuestbookEntry(newEntry);
   res.status(201).json(newEntry);
