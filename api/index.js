@@ -2,10 +2,8 @@ const express = require('express');
 const { createClient } = require('@vercel/kv');
 
 const app = express();
+app.use(express.json()); // Ensure JSON body parsing is enabled
 
-app.use(express.json());
-
-// Initialize Vercel KV client
 const kv = createClient({
   url: process.env.KV_REST_API_URL,
   token: process.env.KV_REST_API_TOKEN,
@@ -48,4 +46,7 @@ app.post('/guestbook', async (req, res) => {
   res.status(201).json(newEntry);
 });
 
-module.exports = app;
+// Export the Express app as a Vercel serverless function handler
+module.exports = (req, res) => {
+  app(req, res);
+};
