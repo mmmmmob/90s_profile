@@ -1,105 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Main Content</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <title>Main Content</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <center>
+      <img
+        src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif"
+        alt="A spinning Geoffrey from Toys R Us"
+      />
+      <h2>About Me</h2>
+    </center>
 
-<center>
-  <img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" alt="A spinning Geoffrey from Toys R Us">
-  <h2>About Me</h2>
-</center>
+    <p>
+      I'm mmmmmob, and this is my personal page. I'm into computers, the
+      internet, and all sorts of cool stuff.
+    </p>
 
-<p>I'm mmmmmob, and this is my personal page. I'm into computers, the internet, and all sorts of cool stuff.</p>
+    <p>Check out this cool dancing baby:</p>
+    <center>
+      <img
+        src="https://www.picgifs.com/graphics/d/dancing-baby/graphics-dancing-baby-560283.gif"
+        alt="A dancing baby"
+      />
+    </center>
 
-<p>Check out this cool dancing baby:</p>
-<center>
-  <img src="https://www.picgifs.com/graphics/d/dancing-baby/graphics-dancing-baby-560283.gif" alt="A dancing baby">
-</center>
+    <br />
+    <hr />
+    <br />
 
-<br>
-<hr>
-<br>
+    <center>
+      <img src="./img/email.gif" alt="Email Me!" />
+      <h2>Guestbook</h2>
+      <p>Leave a message for me!</p>
+      <form id="guestbook-form">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" /><br />
+        <label for="message">Message:</label><br />
+        <textarea id="message" name="message" rows="4" cols="50"></textarea
+        ><br /><br />
+        <input type="submit" value="Sign Guestbook" />
+      </form>
+      <div id="guestbook-entries"></div>
+    </center>
 
-<center>
-  <img src="./img/email.gif" alt="Email Me!">
-  <h2>Guestbook</h2>
-  <p>Leave a message for me!</p>
-  <form id="guestbook-form">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-    <input type="submit" value="Sign Guestbook">
-  </form>
-  <div id="guestbook-entries"></div>
-</center>
+    <br />
+    <hr />
+    <br />
 
-<br>
-<hr>
-<br>
+    <br />
+    <hr />
+    <br />
 
-<br>
-<hr>
-<br>
+    <center>
+      <h2>This page is under construction!</h2>
+      <img src="./img/under_construction.gif" alt="Under Construction" />
 
-<center>
-  <h2>This page is under construction!</h2>
-  <img src="./img/under_construction.gif" alt="Under Construction">
-  
-  <h2>My Favorite Sites</h2>
-  <a href="https://www.yahoo.com"><img src="./img/yahoo.gif" alt="Yahoo!"></a>
-  <a href="https://www.netscape.com"><img src="./img/netscape.gif" alt="Netscape Now!"></a>
-  <a href="https://www.microsoft.com/ie/"><img src="./img/ie.gif" alt="Internet Explorer"></a>
+      <h2>My Favorite Sites</h2>
+      <a href="https://www.yahoo.com"
+        ><img src="./img/yahoo.gif" alt="Yahoo!"
+      /></a>
+      <a href="https://www.netscape.com"
+        ><img src="./img/netscape.gif" alt="Netscape Now!"
+      /></a>
+      <a href="https://www.microsoft.com/ie/"
+        ><img src="./img/ie.gif" alt="Internet Explorer"
+      /></a>
 
-  <h2>Visitors</h2>
-  <script type="text/javascript" src="https://counter.websiteout.com/js/2/5/183/0"></script>
-</center>
+      <h2>Visitors</h2>
+      <div align="center">
+        <a href="https://www.counter12.com"
+          ><img
+            src="https://www.counter12.com/img-C8yZWaZ46a7a3zC2-9.gif"
+            border="0"
+            alt="free counter"
+        /></a>
+        <script
+          type="text/javascript"
+          src="https://www.counter12.com/ad.js?id=C8yZWaZ46a7a3zC2"
+        ></script>
+        <br /><a href="https://meuip.page/qual-e-o-meu-ip/" target="_blank"
+          ><img
+            src="https://img.meuip.page/selo-BdZw3B6Z25a95W4Z.gif"
+            alt="endereco ip"
+            border="0"
+        /></a>
+      </div>
+    </center>
 
-<br>
-<hr>
-<br>
+    <br />
+    <hr />
+    <br />
 
-<center>
-  <p>This page was last updated on: June 29, 2025</p>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif" alt="A spinning globe">
-</center>
+    <center>
+      <p>This page was last updated on: June 29, 2025</p>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif"
+        alt="A spinning globe"
+      />
+    </center>
 
-<script>
-  const guestbookForm = document.getElementById('guestbook-form');
-  const guestbookEntries = document.getElementById('guestbook-entries');
+    <script>
+      const guestbookForm = document.getElementById('guestbook-form');
+      const guestbookEntries = document.getElementById('guestbook-entries');
 
-  const fetchGuestbook = async () => {
-    const response = await fetch('/api/guestbook');
-    const entries = await response.json();
-    guestbookEntries.innerHTML = '';
-    entries.forEach(entry => {
-      const entryDiv = document.createElement('div');
-      entryDiv.innerHTML = `<p><strong>${entry.name}</strong> (${entry.date}): ${entry.message}</p>`;
-      guestbookEntries.appendChild(entryDiv);
-    });
-  };
+      const fetchGuestbook = async () => {
+        const response = await fetch('/api/guestbook');
+        const entries = await response.json();
+        guestbookEntries.innerHTML = '';
+        entries.forEach((entry) => {
+          const entryDiv = document.createElement('div');
+          entryDiv.innerHTML = `<p><strong>${entry.name}</strong> (${entry.date}): ${entry.message}</p>`;
+          guestbookEntries.appendChild(entryDiv);
+        });
+      };
 
-  guestbookForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const message = document.getElementById('message').value;
-    const response = await fetch('/api/guestbook', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, message, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
-    });
-    if (response.ok) {
+      guestbookForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+        const response = await fetch('/api/guestbook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            message,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          }),
+        });
+        if (response.ok) {
+          fetchGuestbook();
+          guestbookForm.reset();
+        }
+      });
+
       fetchGuestbook();
-      guestbookForm.reset();
-    }
-  });
-
-  fetchGuestbook();
-</script>
-<script src="script.js"></script>
-</body>
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>
