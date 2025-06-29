@@ -32,11 +32,14 @@ const writeGuestbookEntry = async (entry) => {
 };
 
 app.get('/guestbook', async (req, res) => {
+  console.log('GET /guestbook hit');
   const entries = await readGuestbook();
   res.json(entries);
 });
 
 app.post('/guestbook', async (req, res) => {
+  console.log('POST /guestbook hit');
+  console.log('Request body:', req.body);
   const newEntry = {
     name: req.body.name,
     message: req.body.message,
