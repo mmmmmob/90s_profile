@@ -1,42 +1,50 @@
-
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const { createClient } = require('@vercel/kv');
 
 const app = express();
 
 app.use(express.json());
 
-const guestbookPath = path.join(process.cwd(), 'guestbook.json');
+// Initialize Vercel KV client
+const kv = createClient({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+});
 
-// Function to read guestbook entries
-const readGuestbook = () => {
+const GUESTBOOK_KEY = 'guestbook_entries';
+
+// Function to read guestbook entries from KV
+const readGuestbook = async () => {
   try {
-    const data = fs.readFileSync(guestbookPath, 'utf8');
-    return JSON.parse(data);
+    const data = await kv.lrange(GUESTBOOK_KEY, 0, -1);
+    return data || [];
   } catch (error) {
+    console.error('Error reading guestbook from KV:', error);
     return [];
   }
 };
 
-// Function to write to the guestbook
-const writeGuestbook = (data) => {
-  fs.writeFileSync(guestbookPath, JSON.stringify(data, null, 2));
+// Function to write a new entry to KV
+const writeGuestbookEntry = async (entry) => {
+  try {
+    await kv.rpush(GUESTBOOK_KEY, entry);
+  } catch (error) {
+    console.error('Error writing guestbook entry to KV:', error);
+  }
 };
 
-app.get('/guestbook', (req, res) => {
-  res.json(readGuestbook());
+app.get('/guestbook', async (req, res) => {
+  const entries = await readGuestbook();
+  res.json(entries);
 });
 
-app.post('/guestbook', (req, res) => {
+app.post('/guestbook', async (req, res) => {
   const newEntry = {
     name: req.body.name,
     message: req.body.message,
     date: new Date().toLocaleString(),
   };
-  const entries = readGuestbook();
-  entries.push(newEntry);
-  writeGuestbook(entries);
+  await writeGuestbookEntry(newEntry);
   res.status(201).json(newEntry);
 });
 
