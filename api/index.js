@@ -4,12 +4,10 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
 
 app.use(express.json());
-app.use(express.static(__dirname));
 
-const guestbookPath = path.join(__dirname, 'guestbook.json');
+const guestbookPath = path.join(process.cwd(), 'guestbook.json');
 
 // Function to read guestbook entries
 const readGuestbook = () => {
@@ -42,6 +40,4 @@ app.post('/guestbook', (req, res) => {
   res.status(201).json(newEntry);
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+module.exports = app;
